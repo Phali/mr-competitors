@@ -52,9 +52,14 @@ def append_list_as_row(file_name, list_of_elem):
         csv_writer = csv.writer(write_obj)
         # Add contents of list as last row in the csv file
         csv_writer.writerow(list_of_elem)
-        
 
-api = GooglePlaces("AIzaSyCagXy4cs2OAo7KCHQviG3oL8bVcsnfjJs")
+
+#Generate an API key on your Google Cloud and save it on an external file 
+#called creds.py
+# (https://developers.google.com/places/web-service/intro)
+        
+from creds import api_key
+api = GooglePlaces(api_key)
 
 kavak_shw = {"Lerma": "19.278630, -99.484617", "Florencia": "19.424953, -99.166439", 
               "Fortuna": "19.483682, -99.133187" , "Santa_Fe": "19.377280, -99.254569", "Tlalplan": "19.283918, -99.176300"}
@@ -84,7 +89,7 @@ csv_columns = fields
 csv_columns.append('lat')
 csv_columns.append('lng')
 
-csv_file = "market_research5.csv"
+csv_file = "market_research_raw.csv"
 try:
     with open(csv_file, 'w') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
